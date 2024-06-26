@@ -1,5 +1,264 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock title %}
 
 {% block content %}
-<h1>Home</h1>
-{% endblock %}
+<section class="py-8 md:py-16">
+  <div class="container max-w-screen-xl mx-auto px-4">
+    <nav
+      class="flex-wrap lg:flex items-center justify-between mb-20 lg:mb-40"
+      x-data="{navbarOpen:false}"
+    >
+      <div class="flex items-center justify-between mb-10 lg:mb-0">
+        <img
+          src="assets/image/navbar-logo.png"
+          alt="Logo"
+          width="91"
+          height="91"
+        />
+
+        <button
+          class="flex items-center justify-center border border-green-500 w-10 h-10 text-green-500 rounded-md outline-none lg:hidden ml-auto"
+          @click="navbarOpen = !navbarOpen"
+        >
+          <i data-feather="menu"></i>
+        </button>
+      </div>
+
+      <ul
+        class="hidden lg:block lg:flex flex-col lg:flex-row lg:items-center lg:space-x-20"
+        :class="{'hidden':!navbarOpen,'flex':navbarOpen}"
+      >
+        <li
+          class="font-medium text-green-500 text-lg hover:text-green-300 transition ease-in-out duration-300 mb-5 lg:mb-0"
+        >
+          <a href="#">Home</a>
+        </li>
+
+        <li
+          class="font-medium text-green-500 text-lg hover:text-green-300 transition ease-in-out duration-300 mb-5 lg:mb-0"
+        >
+          <a href="#">Login</a>
+        </li>
+
+        <li
+          class="px-8 py-3 font-medium text-green-500 text-lg text-center border-2 border-green-500 rounded-md hover:bg-green-500 hover:text-white transition ease-linear duration-300"
+        >
+          <a href="#">Prendi un appuntamento</a>
+        </li>
+      </ul>
+    </nav>
+
+    <header class="flex-col xl:flex-row flex justify-between">
+      <div class="mx-auto text-center xl:text-left xl:mx-0 mb-20 xl:mb-0">
+        <h1
+          class="font-bold text-gray-700 text-3xl md:text-6xl leading-tight mb-10"
+        >
+          LEMA Parrucchieri <br />
+          Levratti & Malaguti <br />
+        </h1>
+
+        <p class="font-normal text-gray-500 text-sm md:text-lg mb-10">
+          Scopri l'arte delle acconciature con i nostri consigli <br />
+          e ispirazioni per ogni occasione!
+        </p>
+
+        <div class="pl-14 flex items-center justify-center lg:justify-start">
+          <a
+            href="#"
+            class="px-12 py-3 bg-green-500 font-medium text-white text-md md:text-lg rounded-md hover:bg-green-700 transition ease-in-out duration-300 mr-14"
+            >La nostra galleria</a
+          >
+        </div>
+      </div>
+
+      <div class="mx-auto xl:mx-0">
+        <img src="assets/image/home-img.svg" alt="Image" />
+      </div>
+    </header>
+  </div>
+  <!-- container.// -->
+</section>
+<!-- home section //end -->
+
+<!-- feature section -->
+<section class="py-8 md:py-16">
+  <div class="container max-w-screen-xl mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+      <div class="text-center mb-10 xl:mb-0">
+        <div class="flex items-center justify-center">
+          <div
+            class="w-20 py-7 flex justify-center bg-purple-50 text-purple-500 rounded-md mb-5 md:mb-10"
+          >
+            <i data-feather="search"></i>
+          </div>
+        </div>
+
+        <h2 class="font-semibold text-gray-700 text-xl md:text-3xl mb-5">
+          Cura nel dettagio
+        </h2>
+
+        <p class="font-normal text-gray-400 text-sm md:text-lg">
+          "Dedichiamo attenzione ai dettagli <br />
+          per garantire risultati impeccabili <br />
+          e soddisfare ogni esigenza."
+        </p>
+      </div>
+
+      <div class="text-center mb-10 md:mb-0">
+        <div class="flex items-center justify-center">
+          <div
+            class="w-20 py-7 flex justify-center bg-red-50 text-red-500 rounded-md mb-5 md:mb-10"
+          >
+            <i data-feather="sliders"></i>
+          </div>
+        </div>
+
+        <h2 class="font-semibold text-gray-700 text-xl md:text-3xl mb-5">
+          Stile Personalizzato
+        </h2>
+
+        <p class="font-normal text-gray-400 text-sm md:text-lg">
+          "Creiamo stili unici e personalizzati <br />
+          che esaltano la bellezza naturale di ogni cliente."
+        </p>
+      </div>
+
+      <div class="text-center">
+        <div class="flex items-center justify-center">
+          <div
+            class="w-20 py-7 flex justify-center bg-blue-50 text-blue-500 rounded-md mb-5 md:mb-10"
+          >
+            <i data-feather="droplet"></i>
+          </div>
+        </div>
+
+        <h2 class="font-semibold text-gray-700 text-xl md:text-3xl mb-5">
+          Benessere Capelli
+        </h2>
+
+        <p class="font-normal text-gray-400 text-sm md:text-lg">
+          "Promuoviamo il benessere dei capelli <br />
+          con trattamenti innovativi <br />
+          e prodotti di alta qualità."
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- feature section //end -->
+
+<section class="py-8 md:py-16">
+  <div class="container max-w-screen-xl mx-auto px-4">
+    <h1
+      class="font-semibold text-gray-700 text-3xl md:text-4xl text-center mb-20 md:mb-40"
+    >
+      Alcune delle recensioni...
+    </h1>
+
+    <div class="container m-auto px-6 pb-6 md:px-12 xl:px-0 font-mono">
+      <div class="mx-auto grid gap-6 md:w-3/4 lg:w-full lg:grid-cols-3">
+        <div class="bg-white rounded-2xl shadow-xl px-8 py-12 sm:px-12 lg:px-8">
+          <div class="mb-12 space-y-4">
+            <h3 class="text-2xl font-semibold text-[#284B63]">
+              Spino2100
+              <div class="flex flex-row mt-4">
+                <img src="assets/image/full-star.svg" alt="" />
+                <img src="assets/image/full-star.svg" alt="" />
+                <img src="assets/image/full-star.svg" alt="" />
+                <img src="assets/image/full-star.svg" alt="" />
+                <img src="assets/image/full-star.svg" alt="" />
+              </div>
+            </h3>
+            <p class="mb-6">
+              Salone molto bello e accogliente ! Personale gentile e
+              professionale ! Consigliatissimi !
+            </p>
+            <a
+              href="https://maps.app.goo.gl/vnJUt9suLbGcNZhd8"
+              class="block font-medium text-sky-700"
+              >Vieni a trovarci!</a
+            >
+          </div>
+          <img
+            src="assets/image/image-1.svg"
+            class="w-2/3 ml-auto -mb-12"
+            alt="illustration"
+            loading="lazy"
+            width="650"
+            height="350"
+          />
+        </div>
+        <div
+          class="bg-white rounded-2xl shadow-2xl px-8 py-12 sm:px-12 lg:px-8"
+        >
+          <div class="mb-12 space-y-4">
+            <h3 class="text-2xl font-semibold text-[#284B63]">
+              Mattia Cestari
+              <div class="flex flex-row mt-4">
+                <img src="assets/image/full-star.svg" alt="" />
+                <img src="assets/image/full-star.svg" alt="" />
+                <img src="assets/image/full-star.svg" alt="" />
+                <img src="assets/image/full-star.svg" alt="" />
+                <img src="assets/image/full-star.svg" alt="" />
+              </div>
+            </h3>
+            <p class="mb-6">
+              Servizio impeccabile, ambiente impeccabile, serietà e
+              professionalità
+            </p>
+            <a
+              href="https://maps.app.goo.gl/vnJUt9suLbGcNZhd8"
+              class="block font-medium text-[#153243]"
+              >Vieni a trovarci!</a
+            >
+          </div>
+          <img
+            src="assets/image/image-2.svg"
+            class="w-2/3 ml-auto"
+            alt="illustration"
+            loading="lazy"
+            width="650"
+            height="350"
+          />
+        </div>
+        <div class="bg-white rounded-2xl shadow-xl px-8 py-12 sm:px-12 lg:px-8">
+          <div class="mb-12 space-y-4">
+            <h3 class="text-2xl font-semibold text-[#284B63]">
+              Enrica Ruosi
+              <div class="flex flex-row mt-4">
+                <img src="assets/image/full-star.svg" alt="" />
+                <img src="assets/image/full-star.svg" alt="" />
+                <img src="assets/image/full-star.svg" alt="" />
+                <img src="assets/image/full-star.svg" alt="" />
+                <img src="assets/image/full-star.svg" alt="" />
+              </div>
+            </h3>
+            <p class="mb-6">
+              Ottima scoperta!! Professionalità e cura al primo posto!!
+              Consigliatisssssssssimo
+            </p>
+            <a
+              href="https://maps.app.goo.gl/vnJUt9suLbGcNZhd8"
+              class="block font-medium text-[#153243]"
+              >Vieni a trovarci!</a
+            >
+          </div>
+          <img
+            src="assets/image/image-3.svg"
+            class="w-2/3 ml-auto"
+            alt="illustration"
+            loading="lazy"
+            width="650"
+            height="350"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  feather.replace();
+</script>
+{% endblock content %}

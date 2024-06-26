@@ -7,5 +7,11 @@ from django.contrib.auth.decorators import login_required
 # @login_required
 def home(request):
     context = {}
-    view = render(request, 'home.html', context)
+    view = render(request, "home.html", context)
+    return view
+
+
+def gallery(request):
+    context = {}
+    view = render(request, "gallery.html", context)
     return view
