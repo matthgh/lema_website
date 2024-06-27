@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}Lema -{% endblock title %}</title>
-    <link rel="stylesheet" href="assets/css/tailwind.css" />
+    <link rel="stylesheet" href={% static 'css/tailwind.css' %} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -25,6 +27,54 @@
   </head>
 
   <body class="bg-white">
+
+    <section class="py-2 md:py-4">
+      <div class="container max-w-screen-xl mx-auto px-4">
+        <nav
+          class="flex-wrap lg:flex items-center justify-between mb-5 lg:mb-10"
+          x-data="{navbarOpen:false}"
+        >
+          <div class="flex items-center justify-between mb-10 lg:mb-0">
+            <img
+              src="assets/image/navbar-logo.png"
+              alt="Logo"
+              width="91"
+              height="91"
+            />
+    
+            <button
+              class="flex items-center justify-center border border-green-500 w-10 h-10 text-green-500 rounded-md outline-none lg:hidden ml-auto"
+              @click="navbarOpen = !navbarOpen"
+            >
+              <i data-feather="menu"></i>
+            </button>
+          </div>
+    
+          <ul
+            class="hidden lg:block lg:flex flex-col lg:flex-row lg:items-center lg:space-x-20"
+            :class="{'hidden':!navbarOpen,'flex':navbarOpen}"
+          >
+            <li
+              class="font-medium text-green-500 text-lg hover:text-green-300 transition ease-in-out duration-300 mb-5 lg:mb-0"
+            >
+              <a href="#">Home</a>
+            </li>
+    
+            <li
+              class="font-medium text-green-500 text-lg hover:text-green-300 transition ease-in-out duration-300 mb-5 lg:mb-0"
+            >
+              <a href="#">Login</a>
+            </li>
+    
+            <li
+              class="px-8 py-3 font-medium text-green-500 text-lg text-center border-2 border-green-500 rounded-md hover:bg-green-500 hover:text-white transition ease-linear duration-300"
+            >
+              <a href={% url "appointment-page" %}>Prendi un appuntamento</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </section>
     {% block content %}{% endblock content %}
   </body>
 </html>
