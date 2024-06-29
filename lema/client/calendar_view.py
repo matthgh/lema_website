@@ -45,7 +45,7 @@ class CustomHTMLCalendar(HTMLCalendar):
         a(self.formatmonthname(theyear, themonth, withyear=withyear))
         a("\n")
         a(
-            "<a href='' class='nav' hx-post={% url 'appointment-calendar' %} hx-target='#calendar' hx-swap='innerHtml'><i class='fas fa-angle-right'></i></a>"
+            "<a href='' class='nav' hx-post='{% url 'appointment-calendar' %}' hx-target='#calendar' hx-swap='innerHTML'><i class='fas fa-angle-right'></i></a>"
         )
         a("\n")
         a("</div>")
