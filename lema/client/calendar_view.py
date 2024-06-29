@@ -1,16 +1,21 @@
 import calendar
 from calendar import HTMLCalendar
+from datetime import date
 
 
 class CustomHTMLCalendar(HTMLCalendar):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.day_abbr = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+        self.current_month = None
 
     def formatday(self, day, weekday):
         if day == 0:
-            return "<button><time>&nbsp;</time></button>"
+            # return "<button><time>&nbsp;</time></button>"
+            return "<span></span>"
         else:
+            if date.today().day == day and date.today().month == self.current_month:
+                return f"<button class='today'><time>{day}</time></button>"
             return f"<button><time>{day}</time></button>"
 
     def formatweek(self, theweek):
@@ -29,6 +34,8 @@ class CustomHTMLCalendar(HTMLCalendar):
             return f"<div>{month_name}</div>"
 
     def formatmonth(self, theyear, themonth, withyear=True):
+        self.current_month = themonth
+
         v = []
         a = v.append
         a('<div class="month">')
@@ -37,7 +44,9 @@ class CustomHTMLCalendar(HTMLCalendar):
         a("\n")
         a(self.formatmonthname(theyear, themonth, withyear=withyear))
         a("\n")
-        a("<a href='' class='nav'><i class='fas fa-angle-right'></i></a>")
+        a(
+            "<a href='' class='nav' hx-post={% url 'appointment-calendar' %} hx-target='#calendar' hx-swap='innerHtml'><i class='fas fa-angle-right'></i></a>"
+        )
         a("\n")
         a("</div>")
         a("\n")

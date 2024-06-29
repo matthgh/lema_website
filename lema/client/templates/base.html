@@ -24,6 +24,8 @@
       defer
       src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
     ></script>
+
+    <script src={% static "js/htmx.min.js" %} defer></script>
   </head>
 
   <body class="bg-white">
@@ -36,7 +38,7 @@
         >
           <div class="flex items-center justify-between mb-10 lg:mb-0">
             <img
-              src="assets/image/navbar-logo.png"
+              src={% static "image/navbar-logo.png" %}
               alt="Logo"
               width="91"
               height="91"
@@ -57,7 +59,7 @@
             <li
               class="font-medium text-green-500 text-lg hover:text-green-300 transition ease-in-out duration-300 mb-5 lg:mb-0"
             >
-              <a href="#">Home</a>
+              <a href={% url "home" %}>Home</a>
             </li>
     
             <li
@@ -69,7 +71,7 @@
             <li
               class="px-8 py-3 font-medium text-green-500 text-lg text-center border-2 border-green-500 rounded-md hover:bg-green-500 hover:text-white transition ease-linear duration-300"
             >
-              <a href={% url "appointment-page" %}>Prendi un appuntamento</a>
+              <a href={% url "gallery" %}>La nostra galleria</a>
             </li>
           </ul>
         </nav>

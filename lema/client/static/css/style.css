@@ -91,9 +91,9 @@
         box-shadow: inset 0px 0px 0px 2px #0a3d62;
       }
 
-      &:first-child {
-        grid-column: 3;
-      }
+      /* &:first-child {
+        grid-column: 1;
+      } */
 
       &:hover {
         background: #eee;

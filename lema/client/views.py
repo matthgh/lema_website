@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 
 from .calendar_view import CustomHTMLCalendar
 from calendar import HTMLCalendar
+from datetime import date
 
 
 # @login_required
@@ -20,16 +21,32 @@ def gallery(request):
 
 def appointment_page(request):
     context = {}
+    request.session["set_month"] = date.today().month
+    request.session["set_year"] = date.today().year
 
-    cal = CustomHTMLCalendar().formatmonth(2024, 5)
-    cal1 = HTMLCalendar().formatmonth(2024, 5)
+    cal = CustomHTMLCalendar().formatmonth(
+        request.session["set_year"], request.session["set_month"]
+    )
+    context["cal"] = cal
+    view = render(request, "appointment_page.html", context)
+    return view
 
-    print(cal)
-    print(cal1)
+
+def appointment_page_htmx(request):
+    context = {}
+
+    if request.method == "POST":
+        if request.session["set_month"] + 1 > 12:
+            request.session["set_month"] = 1
+            request.session["set_month"] += 1
+        else:
+            request.session["set_month"] += 1
+
+    cal = CustomHTMLCalendar().formatmonth(
+        request.session["set_year"], request.session["set_month"]
+    )
 
     context["cal"] = cal
+    view = render(request, "partials/appointment_calendar.html", context)
 
-    print(cal)
-
-    view = render(request, "appointment_page.html", context)
     return view
