@@ -5,10 +5,12 @@
 {% block content %}
 
 {% load static %}
-
-<div class="calendar" id="calendar">{{cal|safe}}</div>
-
 <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+
+<div class="calendar" id="calendar">{{cal|safe|escape}}</div>
+
+<div id="day-view">Seleziona un giorno diponibile...</div>
 
 {% endblock content %}
 

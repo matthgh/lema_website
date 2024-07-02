@@ -1,13 +1,15 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}Lema -{% endblock title %}</title>
     <link rel="stylesheet" href={% static 'css/tailwind.css' %} />
+    <script type="module" src="{% static 'js/tailwind.config.js' %}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -20,15 +22,15 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <script src="https://unpkg.com/htmx.org@2.0.0" integrity="sha384-wS5l5IKJBvK6sPTKa2WZ1js3d947pvWXbPJ1OmWfEuxLgeHcEbjUUA5i9V5ZkpCw" crossorigin="anonymous"></script>
     <script
       defer
       src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
     ></script>
 
-    <script src={% static "js/htmx.min.js" %} defer></script>
   </head>
 
-  <body class="bg-white">
+  <body class="bg-white" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
 
     <section class="py-2 md:py-4">
       <div class="container max-w-screen-xl mx-auto px-4">
@@ -48,7 +50,7 @@
               class="flex items-center justify-center border border-green-500 w-10 h-10 text-green-500 rounded-md outline-none lg:hidden ml-auto"
               @click="navbarOpen = !navbarOpen"
             >
-              <i data-feather="menu"></i>
+               <img src="{% static 'image/menu-logo.svg' %}" alt="">
             </button>
           </div>
     

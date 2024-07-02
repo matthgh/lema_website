@@ -5,6 +5,26 @@ from .calendar_view import CustomHTMLCalendar
 from calendar import HTMLCalendar
 from datetime import date
 
+from .models import (
+    UserInfo,
+    Eight,
+    HalfEight,
+    Nine,
+    HalfNine,
+    Ten,
+    HalfTen,
+    Eleven,
+    HalfEleven,
+    Two,
+    HalfTwo,
+    Three,
+    HalfThree,
+    Four,
+    HalfFour,
+    Five,
+    HalfFive,
+)
+
 
 # @login_required
 def home(request):
@@ -36,11 +56,22 @@ def appointment_page_htmx(request):
     context = {}
 
     if request.method == "POST":
-        if request.session["set_month"] + 1 > 12:
-            request.session["set_month"] = 1
-            request.session["set_month"] += 1
-        else:
-            request.session["set_month"] += 1
+        print(request.POST)
+        arrow = request.POST.get("arrow")
+
+        if arrow == "right":
+            if request.session["set_month"] + 1 > 12:
+                request.session["set_month"] = 1
+                request.session["set_year"] += 1
+            else:
+                request.session["set_month"] += 1
+
+        elif arrow == "left":
+            if request.session["set_month"] - 1 < 1:
+                request.session["set_month"] = 12
+                request.session["set_year"] -= 1
+            else:
+                request.session["set_month"] -= 1
 
     cal = CustomHTMLCalendar().formatmonth(
         request.session["set_year"], request.session["set_month"]
@@ -48,5 +79,20 @@ def appointment_page_htmx(request):
 
     context["cal"] = cal
     view = render(request, "partials/appointment_calendar.html", context)
+
+    return view
+
+
+def day_htmx(request, day):
+    context = {
+        "eight": Eight.objects.filter(
+            date=f"{request.session['set_year']}-{request.session['set_month']}-{day}",
+        ).count()
+    }
+
+    if request.method == "POST":
+        print("Post andata a buon fine!", day)
+
+    view = render(request, "partials/available_options.html", context)
 
     return view
