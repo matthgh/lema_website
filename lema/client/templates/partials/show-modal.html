@@ -1,0 +1,44 @@
+{% load widget_tweaks %}
+
+<div>
+    <h3 class="text-lg font-bold">Copila i dati:</h3>
+    <p class="py-4">La tua prenotazione sarà alle ore {{time}} <br/> del giorno {{day}}/{{month}}/{{year}}.</p>
+    <form method="dialog" hx-on::after-request="this.reset()">
+    {% render_field user_form.first_name class="input input-bordered w-full max-w-full" placeholder='Nome...'|remove_attr:required|attr:"autofocus" %}
+    {% if user_form.first_name.errors %}
+        {% for error in user_form.first_name.errors %}
+        <div class="label">
+            <span class="label-text-alt" style="color: red;">{{ error }}</span>
+        </div>
+        {% endfor %}
+    {% endif %}
+    {% render_field user_form.last_name class="input input-bordered w-full max-w-full mt-4" placeholder='Cognome...'%}
+    {% if user_form.last_name.errors %}
+        {% for error in user_form.last_name.errors %}
+        <div class="label">
+            <span class="label-text-alt" style="color: red;">{{ error }}</span>
+        </div>
+        {% endfor %}
+    {% endif %}
+    {% render_field user_form.phone_number class="input input-bordered w-full max-w-full mt-4" placeholder='321-1234567' %}
+    {% if user_form.phone_number.errors %}
+        {% for error in user_form.phone_number.errors %}
+        <div class="label">
+            <span class="label-text-alt" style="color: red;">Inserisci un numero valido di telefono (es. 123 12312345).</span>
+        </div>
+        {% endfor %}
+    {% endif %}
+
+    <button class="btn mt-3" hx-on:click="">Chiudi</button>
+    <button
+        class="btn btn-primary ml-4"
+        hx-post="{% url 'client:show-modal' time %}"
+        hx-target="#custom-modal-box"
+        hx-swap="innerHtml"
+        hx-on:click=""
+        hx-vals='{"type": "submit"}'
+    >
+        Salva
+    </button>
+    </form>
+</div>

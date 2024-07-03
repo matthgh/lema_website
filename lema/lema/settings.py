@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "widget_tweaks",
     # third-party apps
     # custom apps
     "accounts",
@@ -136,4 +137,7 @@ LOGIN_REDIRECT_URL = ""
 LOGOUT_REDIRECT_URL = ""
 
 
-MAX_USERS = 4
+MAX_USERS = 3
+
+PHONENUMBER_DB_FORMAT = "NATIONAL"
+PHONENUMBER_DEFAULT_REGION = "IT"

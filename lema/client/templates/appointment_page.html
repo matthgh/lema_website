@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-
 {% block title %}Appuntamento{% endblock %}
 
 {% block content %}
@@ -8,9 +7,13 @@
 <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 
 
-<div class="calendar" id="calendar">{{cal|safe|escape}}</div>
+<div class="flex flex-col md:flex-row ">
+  <div class="calendar " id="calendar">{{cal|safe|escape}}</div>
 
-<div id="day-view">Seleziona un giorno diponibile...</div>
+  <div id="day-view" class="grid grid-cols-4 gap-5 w-full mt-6 mx-6">
+    Seleziona un giorno diponibile...
+  </div>
+</div>
+
 
 {% endblock content %}
-

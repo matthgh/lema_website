@@ -2,9 +2,9 @@
 
 
 <div class="month">
-  <img class="nav" src='{% static 'image/left-arrow.svg' %}' hx-post='{% url 'appointment-calendar' %}' hx-vals='{"arrow": "left"}' hx-target='#calendar' hx-swap='innerHtml'>
+  <img class="nav" src='{% static 'image/left-arrow.svg' %}' hx-post='{% url 'client:appointment-calendar' %}' hx-vals='{"arrow": "left"}' hx-target='#calendar' hx-swap='innerHtml'>
   {{months_years|safe}}
-  <img class="nav" src='{% static 'image/right-arrow.svg' %}' hx-post='{% url 'appointment-calendar' %}' hx-vals='{"arrow": "right"}' hx-target='#calendar' hx-swap='innerHtml'>
+  <img class="nav" src='{% static 'image/right-arrow.svg' %}' hx-post='{% url 'client:appointment-calendar' %}' hx-vals='{"arrow": "right"}' hx-target='#calendar' hx-swap='innerHtml'>
 </div>
 <div class="days">{{weekheader|safe}}</div>
 <div class="dates">{{dates|safe}}</div>
