@@ -121,6 +121,9 @@ def day_htmx(request, day):
 
 def show_modal(request, time):
     request.session["set_day"] = request.POST.get("day")
+    day = request.session["set_day"]
+    month = request.session["set_month"]
+    year = request.session["set_year"]
     context = {
         "user_form": UserInfoForm(),
         "time": time,
@@ -153,21 +156,22 @@ def show_modal(request, time):
             user = user_info.save()
             for cls in options:
                 if cls().time == time:
-                    instance = cls(date=f'{request.session['set_year']}-{request.session['set_month']}-{request.session["set_day"]}')
+                    instance = cls(date=f"{year}-{month}-{day}")
                     instance.save()
                     instance.user_info.add(user)
-                    print('success')
-                    ms = messages.success(request, 'La tua prenotazione è stata salvata con successo!')
+                    print("success")
+                    ms = messages.success(
+                        request, "La tua prenotazione è stata salvata con successo!"
+                    )
                     print(ms)
         else:
-            messages.warning(request, 'Si è verificato un errore, riprova più tardi.')
+            messages.warning(request, "Si è verificato un errore, riprova più tardi.")
 
-        
         context["user_form"] = user_info
         context["errors"] = user_info.errors
 
         view = render(request, "partials/show-modal.html", context)
-        view.headers['HX-Trigger'] = 'sendAlert'
+        view.headers["HX-Trigger"] = "sendAlert"
         print(view.headers)
         for message in messages.get_messages(request):
             print(message)
