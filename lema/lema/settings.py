@@ -27,7 +27,7 @@ SECRET_KEY = "django-insecure--bq-**%gohnns9c3c9yn@j0_u^i8g)472@e81jilxoj@8onos7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["172.20.10.5", "lema-website-2.onrender.com"]
+ALLOWED_HOSTS = ["172.20.10.5", "lema-website-2.onrender.com", "127.0.0.1"]
 
 
 # Application definition
@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "widget_tweaks",
     # third-party apps
+    "tailwind",
+    "django_browser_reload",
+    "frontend",
     # custom apps
     "accounts",
     "client",
@@ -52,6 +55,7 @@ MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
@@ -119,6 +123,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
@@ -153,3 +161,10 @@ MAX_USERS = 3
 
 PHONENUMBER_DB_FORMAT = "NATIONAL"
 PHONENUMBER_DEFAULT_REGION = "IT"
+
+TAILWIND_APP_NAME = "frontend"
+
+
+from shutil import which
+
+NPM_BIN_PATH = which("npm")
