@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods
 from django.urls import reverse
-from django.http import HttpResponseRedirect
+from django.contrib import messages
 
 from .calendar_view import CustomHTMLCalendar
 from calendar import HTMLCalendar
@@ -146,29 +146,31 @@ def show_modal(request, time):
         Five,
         HalfFive,
     ]
+
     if request.method == "POST" and request.POST.get("type") == "submit":
         user_info = UserInfoForm(request.POST)
+        if user_info.is_valid():
+            user = user_info.save()
+            for cls in options:
+                if cls().time == time:
+                    instance = cls(date=f'{request.session['set_year']}-{request.session['set_month']}-{request.session["set_day"]}')
+                    instance.save()
+                    instance.user_info.add(user)
+                    print('success')
+                    ms = messages.success(request, 'La tua prenotazione è stata salvata con successo!')
+                    print(ms)
+        else:
+            messages.warning(request, 'Si è verificato un errore, riprova più tardi.')
+
+        
         context["user_form"] = user_info
         context["errors"] = user_info.errors
 
-        return render(request, "partials/show-modal.html", context)
+        view = render(request, "partials/show-modal.html", context)
+        view.headers['HX-Trigger'] = 'sendAlert'
+        print(view.headers)
+        for message in messages.get_messages(request):
+            print(message)
+        return view
 
     return render(request, "partials/show-modal.html", context)
-
-
-# @require_http_methods(["POST"])
-# def handle_appointments_htmx(request):
-#     context = {"user_form": UserInfoForm()}
-#     if request.method == "POST":
-#         user_form = UserInfoForm(request.POST)
-#         if user_form.is_valid():
-#             print("form valid")
-#             # view = render(request, "partials/show-modal.html", context)
-#             return render(request, "partials/show-modal.html", context)
-#         else:
-#             user_form = UserInfoForm(request.POST)
-#             context["errors"] = user_form.errors
-#             print("errore")
-#             return render(request, "partials/show-modal.html", context)
-
-#     # return render(request, "partials/show-modal.html", context)

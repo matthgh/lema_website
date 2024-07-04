@@ -27,7 +27,7 @@ SECRET_KEY = "django-insecure--bq-**%gohnns9c3c9yn@j0_u^i8g)472@e81jilxoj@8onos7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['172.20.10.5']
 
 
 # Application definition
@@ -81,10 +81,22 @@ WSGI_APPLICATION = "lema.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
+
+
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "postgres",
+        "USER": "postgres.wcbhvhqclstpmdyeqfew",
+        "PASSWORD": "XyRIkXI2Im8UIAiw",
+        "HOST": "aws-0-eu-central-1.pooler.supabase.com",
+        "PORT": "6543",
     }
 }
 
