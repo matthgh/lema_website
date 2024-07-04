@@ -75,7 +75,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "lema.wsgi.application"
+WSGI_APPLICATION = "lema.wsgi.app"
 
 
 # Database
