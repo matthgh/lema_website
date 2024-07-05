@@ -3,6 +3,11 @@
 {% for message in messages %}
 
     {% if message.tag == 'success'%}
+    <script
+      defer
+      src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+
     <div role="alert" class="alert alert-success">
     <svg
         xmlns="http://www.w3.org/2000/svg"

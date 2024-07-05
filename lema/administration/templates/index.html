@@ -1,5 +1,60 @@
 {% extends "base.html" %}
 
+{% block title %} Administration {% endblock title %}
+
 {% block content %}
-<h1>Administration</h1>
+<style>
+  .htmx-indicator {
+    opacity: 0;
+    transition: opacity 500ms ease-in;
+  }
+  .htmx-request .htmx-indicator {
+    opacity: 1;
+  }
+  .htmx-request.htmx-indicator {
+    opacity: 1;
+  }
+</style>
+
+<h1 class="font-extrabold text-2xl sm:text-5xl text-slate-700 mx-8">
+  Benvenuto, ecco le prenotazioni della giornata:
+</h1>
+
+<div class="flex mx-5 mt-10 justify-center">
+  <button class="btn btn-square btn-outline btn-success">
+    <img
+      src="https://wcbhvhqclstpmdyeqfew.supabase.co/storage/v1/object/sign/static/image/left_arrow.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJzdGF0aWMvaW1hZ2UvbGVmdF9hcnJvdy5zdmciLCJpYXQiOjE3MjAxMTkxMjUsImV4cCI6MzMyNTYxMTkxMjV9.RJ-YtEgXWIS-z25yviXcin9qIapQkzKSjmJ-2F-cDZA&t=2024-07-04T18%3A52%3A06.360Z"
+      alt=""
+    />
+  </button>
+
+  <input
+    type="date"
+    name="date"
+    class="input input-bordered w-full max-w-xs mx-3"
+    hx-get="{% url 'administration:accordion-htmx' %}"
+    hx-trigger="load, change"
+    hx-target="#accordion-response"
+    hx-indicator="#spinner"
+  />
+
+  <button class="btn btn-square btn-outline btn-success">
+    <img
+      src="https://wcbhvhqclstpmdyeqfew.supabase.co/storage/v1/object/sign/static/image/right_arrow.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJzdGF0aWMvaW1hZ2UvcmlnaHRfYXJyb3cuc3ZnIiwiaWF0IjoxNzIwMTE5MjgxLCJleHAiOjE4MDY1MTkyODF9.o9pXOiRBzNzXKoKZS7caoy7JYKcbzyd8XRxXV-LWPno&t=2024-07-04T18%3A54%3A42.463Z"
+      alt=""
+    />
+  </button>
+</div>
+
+
+
+<img
+  src="https://wcbhvhqclstpmdyeqfew.supabase.co/storage/v1/object/sign/static/image/spinner.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJzdGF0aWMvaW1hZ2Uvc3Bpbm5lci5zdmciLCJpYXQiOjE3MjAxNzQ2MDEsImV4cCI6MzMyNTYxNzQ2MDF9.wpbGsYvjsvFUTcAeGaRu-4AHgMcfjZwFFxDRgjjkP48&t=2024-07-05T10%3A16%3A41.469Z"
+  alt=""
+  id="spinner"
+  class="htmx-indicator ml-20 mt-5"
+  />
+<div id="accordion-response" class="m-20">
+</div>
+
 {% endblock content %}

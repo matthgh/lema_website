@@ -18,6 +18,10 @@ class Eight(models.Model):
     user_info = models.ManyToManyField(UserInfo)
     date = models.DateField()
     token = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    
+    def __str__(self):
+        return f"{self.date}"
+    
 
     @property
     def time(self):

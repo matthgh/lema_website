@@ -1,0 +1,45 @@
+{% if classes %}
+
+    {% for obj in classes %}
+
+    {% if obj %}
+    <div class="collapse collapse-plus bg-base-200">
+        <input type="radio" name="my-accordion-3" {% if forloop.first %} checked="checked" {% endif %} />
+        <div class="collapse-title text-xl font-medium">Hai {{obj.count}} prenotazioni alle ore {{obj.time}}</div>
+        <div class="collapse-content">
+            <div class="overflow-x-auto">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nome e cognome</th>
+                            <th>Cellulare</th>
+                            <th>Note</th>
+                            <th>azioni</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for users in obj %}
+                            {% for user in users.user_info.all %}
+                        <tr>
+                            <th>{{user.first_name}} {{user.last_name}}</th>
+                            <td>{{user.phone_number}}</td>
+                            <td>{{user_info.notes}}</td>
+                            <td>Azioni</td>
+                        </tr>
+                            {% endfor %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% endfor %}
+
+{% else %}
+
+<p>Non hai prenotazioni per questo giorno!</p>
+
+{% endif %}
+

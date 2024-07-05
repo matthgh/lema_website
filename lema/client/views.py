@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods
 from django.urls import reverse
 from django.contrib import messages
+from sms import send_sms
 
 from .calendar_view import CustomHTMLCalendar
 from calendar import HTMLCalendar
@@ -163,7 +164,11 @@ def show_modal(request, time):
                     ms = messages.success(
                         request, "La tua prenotazione è stata salvata con successo!"
                     )
-                    print(ms)
+                    send_sms(
+                        "ti confermiamo la prenotazione",
+                        "+393295366769",
+                        "+393295366769",
+                    )
         else:
             messages.warning(request, "Si è verificato un errore, riprova più tardi.")
 
