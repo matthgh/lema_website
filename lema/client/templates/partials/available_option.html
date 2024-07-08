@@ -1,25 +1,14 @@
 {% load widget_tweaks %}
 
-<div
-  id="day-view"
-  class="grid grid-cols-3 sm:grid-cols-4 gap-5 w-full mt-6 mx-6"
->
-  {% for obj in options %}
 
-  <button
-    class="btn btn-outline btn-success max-w-16"
-    onclick="my_modal_2.showModal()"
-    hx-post="{% url 'client:show-modal' obj.time %}"
-    hx-vals='{"day": "{{day}}"}'
-    hx-target="#custom-modal-box"
-    hx-trigger="click"
+<select name='selection' class="select select-bordered w-full max-w-xs mt-4" hx-post={% url 'client:show-modal' %} hx-target='#custom-modal-box' hx-trigger="change" hx-on:change='my_modal.showModal()' hx-vals='{"day": "{{day}}"}'>
+  <option disabled selected>----</option>
+  {% for obj in options %}
+  <option
+  {% if obj.count > max_users %}disabled{% endif %}
+  value="{{obj.time}}"
   >
     {{obj.time}}
-  </button>
-
+  </option>
   {% endfor %}
-</div>
-
-<dialog id="my_modal_2" class="modal">
-  <div class="modal-box" id="custom-modal-box"></div>
-</dialog>
+</select>

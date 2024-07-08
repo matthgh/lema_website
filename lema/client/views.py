@@ -1,40 +1,38 @@
-from django.shortcuts import redirect, render
+from urllib.parse import urlencode
+from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods
-from django.urls import reverse
 from django.contrib import messages
+from django.conf import settings
+from django.http import QueryDict
 from sms import send_sms
+from decouple import config
 
-from .calendar_view import CustomHTMLCalendar
-from calendar import HTMLCalendar
-from datetime import date
+from .calendar_view import Custom2HTMLCalendar
+from datetime import date as dt
 
-from .forms import EightForm
-
-from .models import (
-    UserInfo,
-    Eight,
-    HalfEight,
-    Nine,
-    HalfNine,
-    Ten,
-    HalfTen,
-    Eleven,
-    HalfEleven,
-    Two,
-    HalfTwo,
-    Three,
-    HalfThree,
-    Four,
-    HalfFour,
-    Five,
-    HalfFive,
+from .forms import (
+    EightForm,
+    HalfEightForm,
+    NineForm,
+    HalfNineForm,
+    TenForm,
+    HalfTenForm,
+    ElevenForm,
+    HalfElevenForm,
+    TwoForm,
+    HalfTwoForm,
+    ThreeForm,
+    HalfThreeForm,
+    FourForm,
+    HalfFourForm,
+    FiveForm,
+    HalfFiveForm,
 )
 
 from .forms import UserInfoForm
 
 
-# @login_required
 def home(request):
     context = {}
     view = render(request, "home.html", context)
@@ -49,13 +47,14 @@ def gallery(request):
 
 def appointment_page(request):
     context = {}
-    request.session["set_month"] = date.today().month
-    request.session["set_year"] = date.today().year
+    request.session["set_month"] = dt.today().month
+    request.session["set_year"] = dt.today().year
 
-    cal = CustomHTMLCalendar().formatmonth(
+    cal = Custom2HTMLCalendar().formatmonth(
         request.session["set_year"], request.session["set_month"]
     )
     context["cal"] = cal
+    context["booking_appoints_url"] = config("BOOKING_APPOINTS_URL")
     view = render(request, "appointment_page.html", context)
 
     return view
@@ -82,7 +81,13 @@ def appointment_page_htmx(request):
             else:
                 request.session["set_month"] -= 1
 
-    cal = CustomHTMLCalendar().formatmonth(
+        elif arrow == "current_day":
+            request.session["set_month"] = dt.today().month
+            request.session["set_year"] = dt.today().year
+
+    request.session["set_year"], request.session["set_month"]
+
+    cal = Custom2HTMLCalendar().formatmonth(
         request.session["set_year"], request.session["set_month"]
     )
 
@@ -95,24 +100,25 @@ def appointment_page_htmx(request):
 def day_htmx(request, day):
     context = {
         "options": [
-            Eight,
-            HalfEight,
-            Nine,
-            HalfNine,
-            Ten,
-            HalfTen,
-            Eleven,
-            HalfEleven,
-            Two,
-            HalfTwo,
-            Three,
-            HalfThree,
-            Four,
-            HalfFour,
-            Five,
-            HalfFive,
+            EightForm(),
+            HalfEightForm(),
+            NineForm(),
+            HalfNineForm(),
+            TenForm(),
+            HalfTenForm(),
+            ElevenForm(),
+            HalfElevenForm(),
+            TwoForm(),
+            HalfTwoForm(),
+            ThreeForm(),
+            HalfThreeForm(),
+            FourForm(),
+            HalfFourForm(),
+            FiveForm(),
+            HalfFiveForm(),
         ],
         "day": day,
+        "max_users": settings.MAX_USERS,
     }
 
     view = render(request, "partials/available_option.html", context)
@@ -120,66 +126,70 @@ def day_htmx(request, day):
     return view
 
 
-def show_modal(request, time):
+def show_modal(request):
     request.session["set_day"] = request.POST.get("day")
+    selection = request.POST.get("selection")
     day = request.session["set_day"]
     month = request.session["set_month"]
     year = request.session["set_year"]
+
     context = {
         "user_form": UserInfoForm(),
-        "time": time,
+        "time": selection,
         "day": request.session["set_day"],
         "month": request.session["set_month"],
         "year": request.session["set_year"],
     }
-    options = [
-        Eight,
-        HalfEight,
-        Nine,
-        HalfNine,
-        Ten,
-        HalfTen,
-        Eleven,
-        HalfEleven,
-        Two,
-        HalfTwo,
-        Three,
-        HalfThree,
-        Four,
-        HalfFour,
-        Five,
-        HalfFive,
+
+    form_options = [
+        EightForm,
+        HalfEightForm,
+        NineForm,
+        HalfNineForm,
+        TenForm,
+        HalfTenForm,
+        ElevenForm,
+        HalfElevenForm,
+        TwoForm,
+        HalfTwoForm,
+        ThreeForm,
+        HalfThreeForm,
+        FourForm,
+        HalfFourForm,
+        FiveForm,
+        HalfFiveForm,
     ]
+    
+    
 
     if request.method == "POST" and request.POST.get("type") == "submit":
         user_info = UserInfoForm(request.POST)
+
         if user_info.is_valid():
             user = user_info.save()
-            for cls in options:
-                if cls().time == time:
-                    instance = cls(date=f"{year}-{month}-{day}")
-                    instance.save()
-                    instance.user_info.add(user)
-                    print("success")
-                    ms = messages.success(
-                        request, "La tua prenotazione è stata salvata con successo!"
-                    )
-                    send_sms(
-                        "ti confermiamo la prenotazione",
-                        "+393295366769",
-                        "+393295366769",
-                    )
-        else:
-            messages.warning(request, "Si è verificato un errore, riprova più tardi.")
 
-        context["user_form"] = user_info
-        context["errors"] = user_info.errors
+            for form_class in form_options:
+
+                if form_class().time == selection:
+                    date = f"{year}-{month}-{day}"
+                    dictionary = {"user_info": user.pk, "date": date}
+                    q_dictionary = QueryDict(
+                        urlencode(dictionary, doseq=True), mutable=True
+                    )
+                    form = form_class(q_dictionary)
+
+                    if form.is_valid():
+                        form.save()
+                        print("salvato")
+                        messages.success(request, "Prenotazione salvata con successo!")
+                    else:
+                        messages.warning(request, form.errors)
+
+        else:
+            context["user_form"] = user_info
+            context["errors"] = user_info.errors
 
         view = render(request, "partials/show-modal.html", context)
-        view.headers["HX-Trigger"] = "sendAlert"
-        print(view.headers)
-        for message in messages.get_messages(request):
-            print(message)
         return view
 
     return render(request, "partials/show-modal.html", context)

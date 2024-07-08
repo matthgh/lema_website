@@ -1,0 +1,13 @@
+<td>
+  <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
+    <a
+      role="link"
+      tabindex="0"
+      class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-base w-8 h-8 flex items-center justify-center font-medium text-gray-500 rounded-full bg-slate-700"
+      hx-post="{% url 'client:day-htmx' day %}"
+      hx-target="#day-view"
+      hx-swap="innerHTML"
+      >{{day}}</a
+    >
+  </div>
+</td>

@@ -1,5 +1,5 @@
 from django.shortcuts import get_list_or_404, render
-from django.http import Http404
+from django.contrib.auth.decorators import login_required
 from client.models import (
     UserInfo,
     Eight,
@@ -23,13 +23,14 @@ from client.models import (
 import datetime
 
 
-# Create your views here.
+@login_required()
 def admin_home(request):
     context = {}
     view = render(request, "index.html", context)
     return view
 
 
+@login_required()
 def accordion(request):
     date = request.GET.get("date") or datetime.date.today()
     context = {
@@ -55,12 +56,6 @@ def accordion(request):
         HalfFive.objects.filter(date=date),
     ]
 
-    # objects = []
-    # for _class in classes:
-    #     obj = list(_class.objects.filter(date=date))
-    #     objects.append(obj)
-
-    # context["objects"] = objects
     context["classes"] = classes
 
     view = render(request, "partials/accordion.html", context)

@@ -15,17 +15,12 @@ class UserInfo(models.Model):
 
 
 class Eight(models.Model):
-    user_info = models.ManyToManyField(UserInfo)
+    user_info = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
     date = models.DateField()
     token = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-    
+
     def __str__(self):
         return f"{self.date}"
-    
-
-    @property
-    def time(self):
-        return "8:00 - 8:30"
 
     @property
     def model_id(self):
@@ -33,13 +28,9 @@ class Eight(models.Model):
 
 
 class HalfEight(models.Model):
-    user_info = models.ManyToManyField(UserInfo)
+    user_info = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
     date = models.DateField()
     token = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-
-    @property
-    def time(self):
-        return "8:30 - 9:00"
 
     @property
     def model_id(self):
@@ -47,13 +38,9 @@ class HalfEight(models.Model):
 
 
 class Nine(models.Model):
-    user_info = models.ManyToManyField(UserInfo)
+    user_info = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
     date = models.DateField()
     token = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-
-    @property
-    def time(self):
-        return "9:00 - 9:30"
 
     @property
     def model_id(self):
@@ -61,13 +48,9 @@ class Nine(models.Model):
 
 
 class HalfNine(models.Model):
-    user_info = models.ManyToManyField(UserInfo)
+    user_info = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
     date = models.DateField()
     token = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-
-    @property
-    def time(self):
-        return "9:30 - 10:00"
 
     @property
     def model_id(self):
@@ -75,13 +58,9 @@ class HalfNine(models.Model):
 
 
 class Ten(models.Model):
-    user_info = models.ManyToManyField(UserInfo)
+    user_info = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
     date = models.DateField()
     token = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-
-    @property
-    def time(self):
-        return "10:00 - 10:30"
 
     @property
     def model_id(self):
@@ -89,13 +68,9 @@ class Ten(models.Model):
 
 
 class HalfTen(models.Model):
-    user_info = models.ManyToManyField(UserInfo)
+    user_info = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
     date = models.DateField()
     token = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-
-    @property
-    def time(self):
-        return "10:30 - 11:00"
 
     @property
     def model_id(self):
@@ -103,13 +78,9 @@ class HalfTen(models.Model):
 
 
 class Eleven(models.Model):
-    user_info = models.ManyToManyField(UserInfo)
+    user_info = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
     date = models.DateField()
     token = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-
-    @property
-    def time(self):
-        return "11:00 - 11:30"
 
     @property
     def model_id(self):
@@ -117,13 +88,9 @@ class Eleven(models.Model):
 
 
 class HalfEleven(models.Model):
-    user_info = models.ManyToManyField(UserInfo)
+    user_info = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
     date = models.DateField()
     token = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-
-    @property
-    def time(self):
-        return "11:30 - 12:00"
 
     @property
     def model_id(self):
@@ -131,13 +98,9 @@ class HalfEleven(models.Model):
 
 
 class Two(models.Model):
-    user_info = models.ManyToManyField(UserInfo)
+    user_info = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
     date = models.DateField()
     token = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-
-    @property
-    def time(self):
-        return "14:00 - 14:30"
 
     @property
     def model_id(self):
@@ -145,13 +108,9 @@ class Two(models.Model):
 
 
 class HalfTwo(models.Model):
-    user_info = models.ManyToManyField(UserInfo)
+    user_info = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
     date = models.DateField()
     token = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-
-    @property
-    def time(self):
-        return "14:30 - 15:00"
 
     @property
     def model_id(self):
@@ -159,13 +118,9 @@ class HalfTwo(models.Model):
 
 
 class Three(models.Model):
-    user_info = models.ManyToManyField(UserInfo)
+    user_info = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
     date = models.DateField()
     token = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-
-    @property
-    def time(self):
-        return "15:00 - 15:30"
 
     @property
     def model_id(self):
@@ -173,13 +128,9 @@ class Three(models.Model):
 
 
 class HalfThree(models.Model):
-    user_info = models.ManyToManyField(UserInfo)
+    user_info = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
     date = models.DateField()
     token = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-
-    @property
-    def time(self):
-        return "15:30 - 16:00"
 
     @property
     def model_id(self):
@@ -187,13 +138,9 @@ class HalfThree(models.Model):
 
 
 class Four(models.Model):
-    user_info = models.ManyToManyField(UserInfo)
+    user_info = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
     date = models.DateField()
     token = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-
-    @property
-    def time(self):
-        return "16:00 - 16:30"
 
     @property
     def model_id(self):
@@ -201,13 +148,9 @@ class Four(models.Model):
 
 
 class HalfFour(models.Model):
-    user_info = models.ManyToManyField(UserInfo)
+    user_info = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
     date = models.DateField()
     token = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-
-    @property
-    def time(self):
-        return "16:30 - 17:00"
 
     @property
     def model_id(self):
@@ -215,13 +158,9 @@ class HalfFour(models.Model):
 
 
 class Five(models.Model):
-    user_info = models.ManyToManyField(UserInfo)
+    user_info = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
     date = models.DateField()
     token = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-
-    @property
-    def time(self):
-        return "17:00 - 17:30"
 
     @property
     def model_id(self):
@@ -229,13 +168,9 @@ class Five(models.Model):
 
 
 class HalfFive(models.Model):
-    user_info = models.ManyToManyField(UserInfo)
+    user_info = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
     date = models.DateField()
     token = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-
-    @property
-    def time(self):
-        return "17:30 - 18:00"
 
     @property
     def model_id(self):

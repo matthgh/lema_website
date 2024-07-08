@@ -58,14 +58,22 @@ class EightForm(forms.ModelForm):
         ]
 
     def clean(self):
-        super().clean()
-        date = self.cleaned_data.get("date")
+        cleaned_data = super().clean()
+        print(cleaned_data)
+        date = cleaned_data.get("date")
+        print(date)
 
         users = Eight.objects.filter(date=date).count()
         print(users)
 
         if users > settings.MAX_USERS:
             raise ValidationError("Maximum number of users exceeded.")
+
+        return cleaned_data
+
+    @property
+    def time(self):
+        return "8:00 - 8:30"
 
 
 class HalfEightForm(forms.ModelForm):
@@ -86,6 +94,10 @@ class HalfEightForm(forms.ModelForm):
         if users > settings.MAX_USERS:
             raise ValidationError("Maximum number of users exceeded.")
 
+    @property
+    def time(self):
+        return "8:30 - 9:00"
+
 
 class NineForm(forms.ModelForm):
 
@@ -104,6 +116,10 @@ class NineForm(forms.ModelForm):
 
         if users > settings.MAX_USERS:
             raise ValidationError("Maximum number of users exceeded.")
+
+    @property
+    def time(self):
+        return "9:00 - 9:30"
 
 
 class HalfNineForm(forms.ModelForm):
@@ -124,6 +140,10 @@ class HalfNineForm(forms.ModelForm):
         if users > settings.MAX_USERS:
             raise ValidationError("Maximum number of users exceeded.")
 
+    @property
+    def time(self):
+        return "9:30 - 10:00"
+
 
 class TenForm(forms.ModelForm):
 
@@ -142,6 +162,10 @@ class TenForm(forms.ModelForm):
 
         if users > settings.MAX_USERS:
             raise ValidationError("Maximum number of users exceeded.")
+
+    @property
+    def time(self):
+        return "10:00 - 10:30"
 
 
 class HalfTenForm(forms.ModelForm):
@@ -162,6 +186,10 @@ class HalfTenForm(forms.ModelForm):
         if users > settings.MAX_USERS:
             raise ValidationError("Maximum number of users exceeded.")
 
+    @property
+    def time(self):
+        return "10:30 - 11:00"
+
 
 class ElevenForm(forms.ModelForm):
 
@@ -180,6 +208,10 @@ class ElevenForm(forms.ModelForm):
 
         if users > settings.MAX_USERS:
             raise ValidationError("Maximum number of users exceeded.")
+
+    @property
+    def time(self):
+        return "11:00 - 11:30"
 
 
 class HalfElevenForm(forms.ModelForm):
@@ -200,6 +232,10 @@ class HalfElevenForm(forms.ModelForm):
         if users > settings.MAX_USERS:
             raise ValidationError("Maximum number of users exceeded.")
 
+    @property
+    def time(self):
+        return "11:30 - 12:00"
+
 
 class TwoForm(forms.ModelForm):
 
@@ -218,6 +254,10 @@ class TwoForm(forms.ModelForm):
 
         if users > settings.MAX_USERS:
             raise ValidationError("Maximum number of users exceeded.")
+
+    @property
+    def time(self):
+        return "14:00 - 14:30"
 
 
 class HalfTwoForm(forms.ModelForm):
@@ -238,6 +278,10 @@ class HalfTwoForm(forms.ModelForm):
         if users > settings.MAX_USERS:
             raise ValidationError("Maximum number of users exceeded.")
 
+    @property
+    def time(self):
+        return "14:30 - 15:00"
+
 
 class ThreeForm(forms.ModelForm):
 
@@ -256,6 +300,10 @@ class ThreeForm(forms.ModelForm):
 
         if users > settings.MAX_USERS:
             raise ValidationError("Maximum number of users exceeded.")
+
+    @property
+    def time(self):
+        return "15:00 - 15:30"
 
 
 class HalfThreeForm(forms.ModelForm):
@@ -276,6 +324,10 @@ class HalfThreeForm(forms.ModelForm):
         if users > settings.MAX_USERS:
             raise ValidationError("Maximum number of users exceeded.")
 
+    @property
+    def time(self):
+        return "15:30 - 16:00"
+
 
 class FourForm(forms.ModelForm):
 
@@ -295,11 +347,15 @@ class FourForm(forms.ModelForm):
         if users > settings.MAX_USERS:
             raise ValidationError("Maximum number of users exceeded.")
 
+    @property
+    def time(self):
+        return "16:00 - 16:30"
+
 
 class HalfFourForm(forms.ModelForm):
 
     class Meta:
-        model = HalfFour()
+        model = HalfFour
         fields = [
             "user_info",
             "date",
@@ -313,6 +369,10 @@ class HalfFourForm(forms.ModelForm):
 
         if users > settings.MAX_USERS:
             raise ValidationError("Maximum number of users exceeded.")
+
+    @property
+    def time(self):
+        return "16:30 - 17:00"
 
 
 class FiveForm(forms.ModelForm):
@@ -333,6 +393,10 @@ class FiveForm(forms.ModelForm):
         if users > settings.MAX_USERS:
             raise ValidationError("Maximum number of users exceeded.")
 
+    @property
+    def time(self):
+        return "17:00 - 17:30"
+
 
 class HalfFiveForm(forms.ModelForm):
 
@@ -352,3 +416,7 @@ class HalfFiveForm(forms.ModelForm):
 
         if users > settings.MAX_USERS:
             raise ValidationError("Maximum number of users exceeded.")
+
+    @property
+    def time(self):
+        return "17:30 - 18:00"
