@@ -168,3 +168,5 @@ TAILWIND_APP_NAME = "frontend"
 from shutil import which
 
 NPM_BIN_PATH = which("npm")
+
+DEBUG_COLLECTSTATIC = 1
