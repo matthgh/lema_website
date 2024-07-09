@@ -1,4 +1,5 @@
-{% load static %} {% load static tailwind_tags %}
+{% load static %}
+{% load static tailwind_tags %}
 
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
@@ -20,18 +21,14 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <script
-      src="https://unpkg.com/htmx.org@2.0.0"
-      integrity="sha384-wS5l5IKJBvK6sPTKa2WZ1js3d947pvWXbPJ1OmWfEuxLgeHcEbjUUA5i9V5ZkpCw"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"
-    ></script>
+    <script src="https://unpkg.com/htmx.org@2.0.0" integrity="sha384-wS5l5IKJBvK6sPTKa2WZ1js3d947pvWXbPJ1OmWfEuxLgeHcEbjUUA5i9V5ZkpCw" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
+
   </head>
 
   <body class="bg-white" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+
+
     <section class="py-2 md:py-4">
       <div class="container max-w-screen-xl mx-auto px-4">
         <nav
@@ -45,18 +42,15 @@
               width="91"
               height="91"
             />
-
+    
             <button
               class="flex items-center justify-center border border-green-500 w-10 h-10 text-green-500 rounded-md outline-none lg:hidden ml-auto"
               @click="navbarOpen = !navbarOpen"
             >
-              <img
-                src="https://ubisagpcdrzyseljfocd.supabase.co/storage/v1/object/sign/static/images/menu_logo.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJzdGF0aWMvaW1hZ2VzL21lbnVfbG9nby5zdmciLCJpYXQiOjE3MjA1MzI0MzYsImV4cCI6MzMyNTY1MzI0MzZ9.5h2R3-y5o0tyxKiSx_5pXOz4hRmOe-8bXUSlcEYFg3o&t=2024-07-09T13%3A40%3A36.165Z"
-                alt=""
-              />
+               <img src="https://ubisagpcdrzyseljfocd.supabase.co/storage/v1/object/sign/static/images/menu_logo.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJzdGF0aWMvaW1hZ2VzL21lbnVfbG9nby5zdmciLCJpYXQiOjE3MjA1MzI0MzYsImV4cCI6MzMyNTY1MzI0MzZ9.5h2R3-y5o0tyxKiSx_5pXOz4hRmOe-8bXUSlcEYFg3o&t=2024-07-09T13%3A40%3A36.165Z" alt="">
             </button>
           </div>
-
+    
           <ul
             class="hidden lg:block lg:flex flex-col lg:flex-row lg:items-center lg:space-x-20"
             :class="{'hidden':!navbarOpen,'flex':navbarOpen}"
@@ -74,17 +68,17 @@
               <a href='{% url "accounts:logout-page" %}'>Logout</a>
             </li>
             {% endif %}
-
+    
             <li
               class="font-medium text-green-500 text-lg hover:text-green-300 transition ease-in-out duration-300 mb-5 lg:mb-0"
             >
-              {% if request.user.is_authenticated %}
+            {% if request.user.is_authenticated %}
               <a href="{% url 'administration:admin-page' %}">Administration</a>
-              {% else %}
+            {% else %}
               <a href="{% url 'accounts:login-page' %}">Login</a>
-              {% endif %}
+            {% endif %}
             </li>
-
+    
             <li
               class="px-8 py-3 font-medium text-green-500 text-lg text-center border-2 border-green-500 rounded-md hover:bg-green-500 hover:text-white transition ease-linear duration-300"
             >
@@ -94,7 +88,7 @@
         </nav>
       </div>
     </section>
-    {% block content %}{% endblock content %} {% block scripts %}{% endblock
-    scripts %}
+    {% block content %}{% endblock content %}
+    {% block scripts %}{% endblock scripts %}
   </body>
 </html>
