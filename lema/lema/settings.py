@@ -27,7 +27,8 @@ SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG", cast=bool)
 
-ALLOWED_HOSTS = config("ALLOWED_HOSTS").split(",")
+# ALLOWED_HOSTS = config("ALLOWED_HOSTS").split(",")
+ALLOWED_HOSTS = ['172.20.10.5', 'lema-website-2.onrender.com', '127.0.0.1', 'sea-lion-app-9r93h.ondigitalocean.app']
 
 
 # Application definition
