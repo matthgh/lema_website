@@ -1,7 +1,4 @@
-{% extends "base.html" %}
-
-{% block title %} Administration {% endblock title %}
-
+{% extends "base.html" %} {% block title %} Administration {% endblock title %}
 {% block content %}
 <style>
   .htmx-indicator {
@@ -21,13 +18,6 @@
 </h1>
 
 <div class="flex mx-5 mt-10 justify-center">
-  <button class="btn btn-square btn-outline btn-success">
-    <img
-      src="https://wcbhvhqclstpmdyeqfew.supabase.co/storage/v1/object/sign/static/image/left_arrow.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJzdGF0aWMvaW1hZ2UvbGVmdF9hcnJvdy5zdmciLCJpYXQiOjE3MjAxMTkxMjUsImV4cCI6MzMyNTYxMTkxMjV9.RJ-YtEgXWIS-z25yviXcin9qIapQkzKSjmJ-2F-cDZA&t=2024-07-04T18%3A52%3A06.360Z"
-      alt=""
-    />
-  </button>
-
   <input
     type="date"
     name="date"
@@ -37,25 +27,52 @@
     hx-target="#accordion-response"
     hx-indicator="#spinner"
   />
-
-  <button class="btn btn-square btn-outline btn-success">
-    <img
-      src="https://wcbhvhqclstpmdyeqfew.supabase.co/storage/v1/object/sign/static/image/right_arrow.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJzdGF0aWMvaW1hZ2UvcmlnaHRfYXJyb3cuc3ZnIiwiaWF0IjoxNzIwMTE5MjgxLCJleHAiOjE4MDY1MTkyODF9.o9pXOiRBzNzXKoKZS7caoy7JYKcbzyd8XRxXV-LWPno&t=2024-07-04T18%3A54%3A42.463Z"
-      alt=""
-    />
-  </button>
 </div>
 
 <img
-  src="https://wcbhvhqclstpmdyeqfew.supabase.co/storage/v1/object/sign/static/image/spinner.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJzdGF0aWMvaW1hZ2Uvc3Bpbm5lci5zdmciLCJpYXQiOjE3MjAxNzQ2MDEsImV4cCI6MzMyNTYxNzQ2MDF9.wpbGsYvjsvFUTcAeGaRu-4AHgMcfjZwFFxDRgjjkP48&t=2024-07-05T10%3A16%3A41.469Z"
+  src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPgoJPHJlY3Qgd2lkdGg9IjEwIiBoZWlnaHQ9IjEwIiB4PSIxIiB5PSIxIiBmaWxsPSJjdXJyZW50Q29sb3IiIHJ4PSIxIj4KCQk8YW5pbWF0ZSBpZD0ic3ZnU3Bpbm5lcnNCbG9ja3NTaHVmZmxlMjAiIGZpbGw9ImZyZWV6ZSIgYXR0cmlidXRlTmFtZT0ieCIgYmVnaW49IjA7c3ZnU3Bpbm5lcnNCbG9ja3NTaHVmZmxlMjcuZW5kIiBkdXI9IjAuMnMiIHZhbHVlcz0iMTsxMyIgLz4KCQk8YW5pbWF0ZSBpZD0ic3ZnU3Bpbm5lcnNCbG9ja3NTaHVmZmxlMjEiIGZpbGw9ImZyZWV6ZSIgYXR0cmlidXRlTmFtZT0ieSIgYmVnaW49InN2Z1NwaW5uZXJzQmxvY2tzU2h1ZmZsZTI0LmVuZCIgZHVyPSIwLjJzIiB2YWx1ZXM9IjE7MTMiIC8+CgkJPGFuaW1hdGUgaWQ9InN2Z1NwaW5uZXJzQmxvY2tzU2h1ZmZsZTIyIiBmaWxsPSJmcmVlemUiIGF0dHJpYnV0ZU5hbWU9IngiIGJlZ2luPSJzdmdTcGlubmVyc0Jsb2Nrc1NodWZmbGUyNS5lbmQiIGR1cj0iMC4ycyIgdmFsdWVzPSIxMzsxIiAvPgoJCTxhbmltYXRlIGlkPSJzdmdTcGlubmVyc0Jsb2Nrc1NodWZmbGUyMyIgZmlsbD0iZnJlZXplIiBhdHRyaWJ1dGVOYW1lPSJ5IiBiZWdpbj0ic3ZnU3Bpbm5lcnNCbG9ja3NTaHVmZmxlMjYuZW5kIiBkdXI9IjAuMnMiIHZhbHVlcz0iMTM7MSIgLz4KCTwvcmVjdD4KCTxyZWN0IHdpZHRoPSIxMCIgaGVpZ2h0PSIxMCIgeD0iMSIgeT0iMTMiIGZpbGw9ImN1cnJlbnRDb2xvciIgcng9IjEiPgoJCTxhbmltYXRlIGlkPSJzdmdTcGlubmVyc0Jsb2Nrc1NodWZmbGUyNCIgZmlsbD0iZnJlZXplIiBhdHRyaWJ1dGVOYW1lPSJ5IiBiZWdpbj0ic3ZnU3Bpbm5lcnNCbG9ja3NTaHVmZmxlMjAuZW5kIiBkdXI9IjAuMnMiIHZhbHVlcz0iMTM7MSIgLz4KCQk8YW5pbWF0ZSBpZD0ic3ZnU3Bpbm5lcnNCbG9ja3NTaHVmZmxlMjUiIGZpbGw9ImZyZWV6ZSIgYXR0cmlidXRlTmFtZT0ieCIgYmVnaW49InN2Z1NwaW5uZXJzQmxvY2tzU2h1ZmZsZTIxLmVuZCIgZHVyPSIwLjJzIiB2YWx1ZXM9IjE7MTMiIC8+CgkJPGFuaW1hdGUgaWQ9InN2Z1NwaW5uZXJzQmxvY2tzU2h1ZmZsZTI2IiBmaWxsPSJmcmVlemUiIGF0dHJpYnV0ZU5hbWU9InkiIGJlZ2luPSJzdmdTcGlubmVyc0Jsb2Nrc1NodWZmbGUyMi5lbmQiIGR1cj0iMC4ycyIgdmFsdWVzPSIxOzEzIiAvPgoJCTxhbmltYXRlIGlkPSJzdmdTcGlubmVyc0Jsb2Nrc1NodWZmbGUyNyIgZmlsbD0iZnJlZXplIiBhdHRyaWJ1dGVOYW1lPSJ4IiBiZWdpbj0ic3ZnU3Bpbm5lcnNCbG9ja3NTaHVmZmxlMjMuZW5kIiBkdXI9IjAuMnMiIHZhbHVlcz0iMTM7MSIgLz4KCTwvcmVjdD4KPC9zdmc+"
   alt=""
   id="spinner"
   class="htmx-indicator ml-20 mt-5"
 />
 
-<button class="btn btn-active m-10">Aggiungi prenotazione</button>
+<button class="btn mt-10 ml-10 mr-10" onclick="my_modal_3.showModal()">
+  Aggiungi prenotazione
+</button>
+<dialog id="my_modal_3" class="modal">
+  <div class="modal-box">
+    <form method="dialog">
+      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+        ✕
+      </button>
+    </form>
+    <form hx-post="{% url 'administration:accordion-htmx' %}">
+      <h3 class="text-lg font-bold mb-6">Completa i campi richiesti!</h3>
+      <div class="flex flex-col m-4">
+        <input
+          type="date"
+          name="date"
+          class="input input-bordered w-full max-w-xs"
+        />
+        <label class="input input-bordered flex items-center gap-2 mt-3">
+          Nome
+          <input type="text" class="grow" name='first_name' placeholder="Marco" />
+        </label>
+        <label class="input input-bordered flex items-center gap-2 mt-3">
+          Cognome
+          <input type="text" class="grow" name='last_name' placeholder="Rossi" />
+        </label>
 
+        <input type="tel" name='phone_number' placeholder="321-1234567" class="input input-bordered w-full max-w-xs mt-3" />
 
-<div id="accordion-response" class="m-20"></div>
+        <textarea class="textarea textarea-bordered mt-3" name='notes' placeholder="Note..."></textarea>
+
+        <input type="submit" value="Inserisci" class="btn btn-outline btn-success mt-4" />
+      </div>
+    </form>
+  </div>
+</dialog>
+
+<div id="accordion-response" class="m-4 sm:m-20"></div>
 
 {% endblock content %}

@@ -23,6 +23,10 @@ class Eight(models.Model):
         return f"{self.date}"
 
     @property
+    def time(self):
+        return "8:00 - 8:30"
+
+    @property
     def model_id(self):
         return 1
 

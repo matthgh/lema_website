@@ -37,7 +37,7 @@
         >
           <div class="flex items-center justify-between mb-10 lg:mb-0">
             <img
-              src={% static "image/navbar-logo.png" %}
+              src="https://ubisagpcdrzyseljfocd.supabase.co/storage/v1/object/sign/static/images/navbar_logo.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJzdGF0aWMvaW1hZ2VzL25hdmJhcl9sb2dvLnBuZyIsImlhdCI6MTcyMDUzMjM3NSwiZXhwIjozMzI1NjUzMjM3NX0.2K4aKy7RvfhiCAEQU1EjbqJiPsVD5b3H3Y0zMzMVhjQ&t=2024-07-09T13%3A39%3A35.544Z"
               alt="Logo"
               width="91"
               height="91"
@@ -47,7 +47,7 @@
               class="flex items-center justify-center border border-green-500 w-10 h-10 text-green-500 rounded-md outline-none lg:hidden ml-auto"
               @click="navbarOpen = !navbarOpen"
             >
-               <img src="{% static 'image/menu-logo.svg' %}" alt="">
+               <img src="https://ubisagpcdrzyseljfocd.supabase.co/storage/v1/object/sign/static/images/menu_logo.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJzdGF0aWMvaW1hZ2VzL21lbnVfbG9nby5zdmciLCJpYXQiOjE3MjA1MzI0MzYsImV4cCI6MzMyNTY1MzI0MzZ9.5h2R3-y5o0tyxKiSx_5pXOz4hRmOe-8bXUSlcEYFg3o&t=2024-07-09T13%3A40%3A36.165Z" alt="">
             </button>
           </div>
     
@@ -58,14 +58,14 @@
             <li
               class="font-medium text-green-500 text-lg hover:text-green-300 transition ease-in-out duration-300 mb-5 lg:mb-0"
             >
-              <a href={% url "client:home" %}>Home</a>
+              <a href='{% url "client:home" %}'>Home</a>
             </li>
 
             {% if request.user.is_authenticated %}
             <li
               class="font-medium text-green-500 text-lg hover:text-green-300 transition ease-in-out duration-300 mb-5 lg:mb-0"
             >
-              <a href={% url "accounts:logout-page" %}>Logout</a>
+              <a href='{% url "accounts:logout-page" %}'>Logout</a>
             </li>
             {% endif %}
     

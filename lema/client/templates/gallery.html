@@ -6,128 +6,22 @@
 <section class="py-8 md:py-16">
   <div class="container max-w-screen-xl mx-auto px-4">
     <h1
-      class="font-semibold text-gray-700 text-3xl md:text-4xl text-center mb-5"
+      class="font-semibold text-gray-700 text-3xl md:text-4xl text-center mb-20"
     >
-      Our works
+      Il nostro lavoro
     </h1>
 
-    <p class="font-normal text-gray-500 text-md md:text-lg text-center mb-20">
-      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-      deserunt mollit <br />
-      anim id est laborum.
-    </p>
-
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 xl:gap-10">
+      {% for img in tagli %}
       <div class="space-y-2 xl:space-y-4">
         <img
-          src="assets/image/yoga-1.svg"
+          src="{{img}}"
           alt="Image"
-          class="hover:opacity-75 transition ease-in-out duration-300"
+          class="hover:opacity-75 transition ease-in-out duration-300 rounded-md"
         />
-
-        <p class="font-normal text-gray-400 text-base">
-          Design, Branding, Development
-        </p>
-
-        <a
-          href="#"
-          class="block font-semibold text-gray-700 text-xl md:text-2xl hover:text-green-500 transition ease-in-out duration-300"
-          >Yoga School</a
-        >
       </div>
-
-      <div class="space-y-2 xl:space-y-4">
-        <img
-          src="assets/image/yoga-2.svg"
-          alt="Image"
-          class="hover:opacity-75 transition ease-in-out duration-300"
-        />
-
-        <p class="font-normal text-gray-400 text-base">
-          Design, Branding, Development
-        </p>
-
-        <a
-          href="#"
-          class="block font-semibold text-gray-700 text-xl md:text-2xl hover:text-green-500 transition ease-in-out duration-300"
-          >Yoga School</a
-        >
-      </div>
-
-      <div class="space-y-2 xl:space-y-4">
-        <img
-          src="assets/image/yoga-3.svg"
-          alt="Image"
-          class="hover:opacity-75 transition ease-in-out duration-300"
-        />
-
-        <p class="font-normal text-gray-400 text-base">
-          Design, Branding, Development
-        </p>
-
-        <a
-          href="#"
-          class="block font-semibold text-gray-700 text-xl md:text-2xl hover:text-green-500 transition ease-in-out duration-300"
-          >Yoga School</a
-        >
-      </div>
-
-      <div class="space-y-2 xl:space-y-4">
-        <img
-          src="assets/image/yoga-3.svg"
-          alt="Image"
-          class="hover:opacity-75 transition ease-in-out duration-300"
-        />
-
-        <p class="font-normal text-gray-400 text-base">
-          Design, Branding, Development
-        </p>
-
-        <a
-          href="#"
-          class="block font-semibold text-gray-700 text-xl md:text-2xl hover:text-green-500 transition ease-in-out duration-300"
-          >Yoga School</a
-        >
-      </div>
-
-      <div class="space-y-2 xl:space-y-4">
-        <img
-          src="assets/image/yoga-1.svg"
-          alt="Image"
-          class="hover:opacity-75 transition ease-in-out duration-300"
-        />
-
-        <p class="font-normal text-gray-400 text-base">
-          Design, Branding, Development
-        </p>
-
-        <a
-          href="#"
-          class="block font-semibold text-gray-700 text-xl md:text-2xl hover:text-green-500 transition ease-in-out duration-300"
-          >Yoga School</a
-        >
-      </div>
-
-      <div class="space-y-2 xl:space-y-4 mb-10 md:mb-20">
-        <img
-          src="assets/image/yoga-2.svg"
-          alt="Image"
-          class="hover:opacity-75 transition ease-in-out duration-300"
-        />
-
-        <p class="font-normal text-gray-400 text-base">
-          Design, Branding, Development
-        </p>
-
-        <a
-          href="#"
-          class="block font-semibold text-gray-700 text-xl md:text-2xl hover:text-green-500 transition ease-in-out duration-300"
-          >Yoga School</a
-        >
-      </div>
+      {% endfor %}
     </div>
-    <hr class="text-gray-300 mb-8" />
   </div>
-  <!-- container.// -->
 </section>
 {% endblock content %}

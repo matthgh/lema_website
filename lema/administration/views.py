@@ -1,31 +1,40 @@
 from django.shortcuts import get_list_or_404, render
 from django.contrib.auth.decorators import login_required
-from client.models import (
-    UserInfo,
-    Eight,
-    HalfEight,
-    Nine,
-    HalfNine,
-    Ten,
-    HalfTen,
-    Eleven,
-    HalfEleven,
-    Two,
-    HalfTwo,
-    Three,
-    HalfThree,
-    Four,
-    HalfFour,
-    Five,
-    HalfFive,
-)
+
+from client.models import *
+from client.forms import *
 
 import datetime
+from decouple import config
 
 
 @login_required()
 def admin_home(request):
-    context = {}
+    context = {
+        "user_info": UserInfo,
+        "forms": [
+            EightForm,
+            HalfEightForm,
+            NineForm,
+            HalfNineForm,
+            TenForm,
+            HalfTenForm,
+            ElevenForm,
+            HalfElevenForm,
+            TwoForm,
+            HalfTwoForm,
+            ThreeForm,
+            HalfThreeForm,
+            FourForm,
+            HalfFourForm,
+            FiveForm,
+            HalfFiveForm,
+        ],
+    }
+
+    if request.method == "POST":
+        pass
+
     view = render(request, "index.html", context)
     return view
 
@@ -33,9 +42,7 @@ def admin_home(request):
 @login_required()
 def accordion(request):
     date = request.GET.get("date") or datetime.date.today()
-    context = {
-        "user_info": UserInfo,
-    }
+    context = {"user_info": UserInfo, "pen": config("PEN"), "bin": config("BIN")}
 
     classes = [
         Eight.objects.filter(date=date),
@@ -57,6 +64,9 @@ def accordion(request):
     ]
 
     context["classes"] = classes
+
+    if request.method == "POST":
+        print(request.POST)
 
     view = render(request, "partials/accordion.html", context)
 

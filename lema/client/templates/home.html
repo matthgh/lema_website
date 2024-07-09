@@ -26,7 +26,7 @@
 
       <div class="pl-14 flex items-center justify-center lg:justify-start">
         <a
-          href={% url "client:appointment-page" %}
+          href='{% url "client:appointment-page" %}'
           class="px-12 py-3 bg-green-500 font-medium text-white text-md md:text-lg rounded-md hover:bg-green-700 transition ease-in-out duration-300 mr-14"
           >Prendi un appuntamento</a
         >
@@ -34,11 +34,11 @@
     </div>
 
     <div class="mx-auto xl:mx-0">
-      <img src={% static 'image/home-img.svg' %} alt="Image" />
+      <img src='{{home_img}}' alt="Image" />
     </div>
   </header>
 
-  <div class="container max-w-screen-xl mx-auto px-4">
+  <div class="container max-w-screen-xl mx-auto px-4 mt-10">
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
       <div class="text-center mb-10 xl:mb-0">
         <div class="flex items-center justify-center">
@@ -118,11 +118,11 @@
             <h3 class="text-2xl font-semibold text-[#284B63]">
               Spino2100
               <div class="flex flex-row mt-4">
-                <img src="assets/image/full-star.svg" alt="" />
-                <img src="assets/image/full-star.svg" alt="" />
-                <img src="assets/image/full-star.svg" alt="" />
-                <img src="assets/image/full-star.svg" alt="" />
-                <img src="assets/image/full-star.svg" alt="" />
+                <img src="{{full_star}}" alt="" />
+                <img src="{{full_star}}" alt="" />
+                <img src="{{full_star}}" alt="" />
+                <img src="{{full_star}}" alt="" />
+                <img src="{{full_star}}" alt="" />
               </div>
             </h3>
             <p class="mb-6">
@@ -136,7 +136,7 @@
             >
           </div>
           <img
-            src="assets/image/image-1.svg"
+            src="{{image_2}}"
             class="w-2/3 ml-auto -mb-12"
             alt="illustration"
             loading="lazy"
@@ -151,11 +151,11 @@
             <h3 class="text-2xl font-semibold text-[#284B63]">
               Mattia Cestari
               <div class="flex flex-row mt-4">
-                <img src="{% static 'image/full-star.svg' %}" alt="" />
-                <img src="{% static 'image/full-star.svg' %}" alt="" />
-                <img src="{% static 'image/full-star.svg' %}" alt="" />
-                <img src="{% static 'image/full-star.svg' %}" alt="" />
-                <img src="{% static 'image/full-star.svg' %}" alt="" />
+                <img src="{{full_star}}" alt="" />
+                <img src="{{full_star}}" alt="" />
+                <img src="{{full_star}}" alt="" />
+                <img src="{{full_star}}" alt="" />
+                <img src="{{outline_star}}" alt="" />
               </div>
             </h3>
             <p class="mb-6">
@@ -169,7 +169,7 @@
             >
           </div>
           <img
-            src="{% static 'image/image-1.svg' %}"
+            src="{{image_1}}"
             class="w-2/3 ml-auto"
             alt="illustration"
             loading="lazy"
@@ -182,11 +182,11 @@
             <h3 class="text-2xl font-semibold text-[#284B63]">
               Enrica Ruosi
               <div class="flex flex-row mt-4">
-                <img src="assets/image/full-star.svg" alt="" />
-                <img src="assets/image/full-star.svg" alt="" />
-                <img src="assets/image/full-star.svg" alt="" />
-                <img src="assets/image/full-star.svg" alt="" />
-                <img src="assets/image/full-star.svg" alt="" />
+                <img src="{{full_star}}" alt="" />
+                <img src="{{full_star}}" alt="" />
+                <img src="{{full_star}}" alt="" />
+                <img src="{{full_star}}" alt="" />
+                <img src="{{full_star}}" alt="" />
               </div>
             </h3>
             <p class="mb-6">
@@ -200,7 +200,7 @@
             >
           </div>
           <img
-            src="assets/image/image-3.svg"
+            src="{{image_3}}"
             class="w-2/3 ml-auto"
             alt="illustration"
             loading="lazy"
