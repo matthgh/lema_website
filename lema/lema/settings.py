@@ -28,7 +28,13 @@ SECRET_KEY = config("SECRET_KEY")
 DEBUG = config("DEBUG", cast=bool)
 
 # ALLOWED_HOSTS = config("ALLOWED_HOSTS").split(",")
-ALLOWED_HOSTS = ['172.20.10.5', 'lema-website-2.onrender.com', '127.0.0.1', 'sea-lion-app-9r93h.ondigitalocean.app']
+ALLOWED_HOSTS = [
+    "172.20.10.5",
+    "lema-website-2.onrender.com",
+    "127.0.0.1",
+    "sea-lion-app-9r93h.ondigitalocean.app",
+    "seahorse-app-txrt6.ondigitalocean.app",
+]
 
 
 # Application definition
