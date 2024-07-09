@@ -169,4 +169,4 @@ from shutil import which
 
 NPM_BIN_PATH = which("npm")
 
-DEBUG_COLLECTSTATIC = 1
+DISABLE_COLLECTSTATIC=1
