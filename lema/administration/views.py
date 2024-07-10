@@ -66,7 +66,8 @@ def accordion(request):
     context["classes"] = classes
 
     if request.method == "POST":
-        print(request.POST)
+        for _class in classes:
+            print(_class.time)
 
     view = render(request, "partials/accordion.html", context)
 

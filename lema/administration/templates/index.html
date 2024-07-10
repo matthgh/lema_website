@@ -54,6 +54,17 @@
           name="date"
           class="input input-bordered w-full max-w-xs"
         />
+        <select name='selection' class="select select-bordered w-full max-w-xs mt-4" hx-post={% url 'client:show-modal' %} hx-target='#custom-modal-box' hx-trigger="change" hx-on:change='my_modal.showModal()' hx-vals='{"day": "{{day}}"}'>
+          <option disabled selected>----</option>
+          {% for obj in classes %}
+          <option
+          {% if obj.count > max_users %}disabled{% endif %}
+          value="{{obj.time}}"
+          >
+            {{obj.time}}
+          </option>
+          {% endfor %}
+        </select>
         <label class="input input-bordered flex items-center gap-2 mt-3">
           Nome
           <input type="text" class="grow" name='first_name' placeholder="Marco" />

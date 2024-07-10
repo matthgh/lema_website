@@ -8,5 +8,5 @@ urlpatterns = [
     path("accounts/", include("accounts.urls")),
     path("", include("client.urls")),
     path("administration/", include("administration.urls")),
-    path("__reload__/", include("django_browser_reload.urls")),
+    # path("__reload__/", include("django_browser_reload.urls")),
 ] + static(settings.STATIC_URL)

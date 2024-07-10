@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     "widget_tweaks",
     # third-party apps
     "tailwind",
-    "django_browser_reload",
+    # "django_browser_reload",
     "frontend",
     # custom apps
     "accounts",
