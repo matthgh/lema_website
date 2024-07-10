@@ -33,14 +33,14 @@
     <input type="hidden" name="selection" value="{{time}}">
 
     <button class="btn mt-3" >Chiudi</button>
-    <!-- hx-on:afterRequest="my_modal_2.close()" -->
+
     <button
         class="btn btn-primary ml-4"
         hx-post="{% url 'client:show-modal' %}"
         hx-target="#custom-modal-box"
         hx-swap="innerHtml"
         hx-vals='{"type": "submit", "day": "{{day}}"}'
-        hx-on::afterRequest="my_modal_2.close()"
+        hx-on="my_modal_2.close()"
     >
         Salva
     </button>
