@@ -185,7 +185,7 @@ def show_modal(request):
         print(phone_number)
 
         if user_info.is_valid():
-            user = UserInfo.objects.filter(phone_number=phone_number)
+            user = UserInfo.objects.get(phone_number=phone_number)
 
             if not user:
                 user = user_info.save()
@@ -195,7 +195,7 @@ def show_modal(request):
                 if form_class().time == request.session["time_selection"]:
 
                     date = f"{year}-{month}-{day}"
-                    dictionary = {"user_info": user.id, "date": date}
+                    dictionary = {"user_info": user.pk, "date": date}
                     q_dictionary = QueryDict(
                         urlencode(dictionary, doseq=True), mutable=True
                     )
