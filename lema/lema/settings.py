@@ -34,6 +34,7 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
     "sea-lion-app-9r93h.ondigitalocean.app",
     "seahorse-app-txrt6.ondigitalocean.app",
+    'urchin-app-ehvyd.ondigitalocean.app',
 ]
 
 
